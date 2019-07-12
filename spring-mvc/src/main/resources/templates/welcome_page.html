@@ -5,6 +5,14 @@
     <title>Spring</title>
 </head>
 <body>
-    <p>Student registered: <span th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}">John Doe</span></p>
+    <p>Student registered: <span th:text="${student.getFirstName()} + ' ' + ${student.getLastName()} + ' is from ' + ${student.getCountry()}
+        + ' studies ' + ${student.getProgrammingLanguage()}">
+        John Doe is from NeverLand</span> .Phones used:
+        <span th:each="phone, iterStat : ${student.getPhones()}">
+            <span th:if="${iterStat.index == iterStat.size - 2}" th:text="${phone} + ' and '"></span>
+            <span th:if="${iterStat.index < iterStat.size - 2}" th:text="${phone} + ', '"></span>
+            <span th:if="${iterStat.index == iterStat.size - 1}" th:text="${phone} + '.'"></span>
+        </span>
+    </p>
 </body>
 </html>

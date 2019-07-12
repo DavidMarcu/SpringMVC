@@ -8,6 +8,21 @@
     <form th:method="post" th:action="@{/student}" th:object="${student}">
         <label th:for="firstName">First Name: </label> <input type="text" th:field="*{firstName}"/>
         <label th:for="lastName">Last Name: </label> <input type="text" th:field="*{lastName}"/>
+        <label th:for="country">Country: </label>
+        <select th:field="*{country}">
+            <option th:each="country : *{countryOptions}" th:value="${country.getKey()}" th:text="${country.getValue()}"></option>
+        </select>
+
+        <div th:each="language : *{programmingLanguages}">
+            <input type="radio" th:id="${language}" th:field="*{programmingLanguage}" th:value="${language}"/>
+            <label th:for="${language}" th:text="${language}"></label>
+        </div>
+
+        <div th:each="brand: *{phoneBrands}">
+            <input type="checkbox" th:field="*{phones}" th:value="${brand}"/>
+            <label th:for="${#ids.prev('phones')}" th:text="${brand}"> Unknown</label>
+        </div>
+
         <input type="submit" value="Submit"/>
     </form>
 </body>
