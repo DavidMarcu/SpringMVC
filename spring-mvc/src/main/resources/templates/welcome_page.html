@@ -2,9 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>SpringMVC</title>
+    <title>Spring</title>
 </head>
 <body>
-<h2> Hello Spring!<br/> <span th:text="${greeting}">Hello you</span></h2>
+    <p>Student registered: <span th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}">John Doe</span></p>
 </body>
 </html>
