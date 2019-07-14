@@ -5,14 +5,17 @@
     <title>Spring</title>
 </head>
 <body>
-    <p>Student registered: <span th:text="${student.getFirstName()} + ' ' + ${student.getLastName()} + ' is from ' + ${student.getCountry()}
-        + ' studies ' + ${student.getProgrammingLanguage()}">
-        John Doe is from NeverLand</span> .Phones used:
-        <span th:each="phone, iterStat : ${student.getPhones()}">
+    <p>Student registered: <span th:text="${student.firstName} + ' ' + ${student.lastName} + ' is from ' + ${student.country}
+        + ' studies ' + ${student.programmingLanguage} + '. '">
+        John Doe is from NeverLand. </span>
+        <span th:if="${student.phones != null and !student.phones.isEmpty()}">Phones used: </span>
+        <span th:each="phone, iterStat : ${student.phones}">
             <span th:if="${iterStat.index == iterStat.size - 2}" th:text="${phone} + ' and '"></span>
             <span th:if="${iterStat.index < iterStat.size - 2}" th:text="${phone} + ', '"></span>
             <span th:if="${iterStat.index == iterStat.size - 1}" th:text="${phone} + '.'"></span>
         </span>
+        <span th:text="'The student is graded with: ' + ${student.grade} + '. '"></span>
+        <span th:if="${!student.postalCode.isEmpty()}" th:text="'The student\'s postal code is: ' + ${student.postalCode}"></span>
     </p>
 </body>
 </html>

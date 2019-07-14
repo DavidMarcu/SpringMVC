@@ -3,19 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring</title>
+    <link rel="stylesheet" href="../static/css/error_style.css" th:href="@{css/error_style.css}"/>
 </head>
 <body>
     <form th:method="post" th:action="@{/student}" th:object="${student}">
-        <label th:for="firstName">First Name: </label> <input type="text" th:field="*{firstName}"/>
-        <label th:for="lastName">Last Name: </label> <input type="text" th:field="*{lastName}"/>
-        <label th:for="country">Country: </label>
-        <select th:field="*{country}">
-            <option th:each="country : *{countryOptions}" th:value="${country.getKey()}" th:text="${country.getValue()}"></option>
-        </select>
+        <div>
+            <label th:for="firstName">First Name: </label>
+            <input id="firstName" type="text" th:field="*{firstName}"/>
+
+            <label th:for="lastName">Last Name* :</label>
+            <input id="lastName" type="text" th:field="*{lastName}"/>
+            <span class="errors" th:if="${#fields.hasErrors('lastName')}"
+                  th:text="${#fields.errors('lastName')[0]}"></span>
+
+            <label th:for="grade">Grade: </label>
+            <input id="grade" type="text" th:field="*{grade}"/>
+            <span class="errors" th:if="${#fields.hasErrors('grade')}"
+                  th:text="${#fields.errors('grade')[0]}"></span>
+        </div>
+
+        <div>
+            <label th:for="country">Country: </label>
+            <select id="country" th:field="*{country}">
+                <option th:each="country : *{countryOptions}" th:value="${country.getKey()}" th:text="${country.getValue()}"></option>
+            </select>
+
+            <label th:for="postalCode">Postal code: </label>
+            <input id="postalCode" type="text" th:field="*{postalCode}"/>
+            <span class="errors" th:if="${#fields.hasErrors('postalCode')}"
+                th:text="${#fields.errors('postalCode')[0]}"></span>
+        </div>
 
         <div th:each="language : *{programmingLanguages}">
-            <input type="radio" th:id="${language}" th:field="*{programmingLanguage}" th:value="${language}"/>
-            <label th:for="${language}" th:text="${language}"></label>
+            <input type="radio" th:field="*{programmingLanguage}" th:value="${language}"/>
+            <label th:for="${#ids.prev('programmingLanguage')}" th:text="${language}"></label>
         </div>
 
         <div th:each="brand: *{phoneBrands}">
