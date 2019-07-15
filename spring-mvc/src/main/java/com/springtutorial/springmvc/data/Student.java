@@ -2,10 +2,7 @@ package com.springtutorial.springmvc.data;
 
 import lombok.Data;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,9 +16,10 @@ public class Student {
     @NotEmpty(message = "required")
     private String lastName;
 
+    @NotNull(message = "{typeMismatch.student.grade}")
     @Min(value = 1, message = "Must be between 1 and 10 inclusive")
     @Max(value = 10, message = "Must be between 1 and 10 inclusive")
-    private int grade;
+    private Integer grade;
 
     @Pattern(regexp = "^$|^\\d{6}", message = "Must contain 6 digits")
     private String postalCode;
