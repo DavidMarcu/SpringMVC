@@ -1,5 +1,6 @@
 package com.springtutorial.springmvc.data;
 
+import com.springtutorial.springmvc.validation.CourseCode;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -16,13 +17,15 @@ public class Student {
     @NotEmpty(message = "required")
     private String lastName;
 
-    @NotNull(message = "{typeMismatch.student.grade}")
     @Min(value = 1, message = "Must be between 1 and 10 inclusive")
     @Max(value = 10, message = "Must be between 1 and 10 inclusive")
     private Integer grade;
 
     @Pattern(regexp = "^$|^\\d{6}", message = "Must contain 6 digits")
     private String postalCode;
+
+    @CourseCode(value = {"CS", "LUV"}, message = "must start with CS or LUV")
+    private String courseCode;
 
     private String country;
     private String programmingLanguage;

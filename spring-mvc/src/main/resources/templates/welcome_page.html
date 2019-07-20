@@ -14,8 +14,9 @@
             <span th:if="${iterStat.index < iterStat.size - 2}" th:text="${phone} + ', '"></span>
             <span th:if="${iterStat.index == iterStat.size - 1}" th:text="${phone} + '.'"></span>
         </span>
-        <span th:text="'The student is graded with: ' + ${student.grade} + '. '"></span>
+        <span th:if="${student.grade != null}" th:text="'The student is graded with: ' + ${student.grade} + '. '"></span>
         <span th:if="${!student.postalCode.isEmpty()}" th:text="'The student\'s postal code is: ' + ${student.postalCode}"></span>
+        <span th:if="${!student.courseCode.isEmpty()}" th:text="'The student\'s code is: ' + ${student.courseCode}"></span>
     </p>
 </body>
 </html>

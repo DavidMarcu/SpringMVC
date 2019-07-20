@@ -22,6 +22,8 @@ public class StudentController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String postStudentForm(@Valid @ModelAttribute Student student, Errors errors){
+        System.out.println("Binding result: " + errors +"\n\n");
+        System.out.println("Student data: " + student + "\n\n");
         if(errors.hasErrors()){
             return "student_form";
         }

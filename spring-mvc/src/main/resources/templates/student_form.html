@@ -32,6 +32,11 @@
             <input id="postalCode" type="text" th:field="*{postalCode}"/>
             <span class="errors" th:if="${#fields.hasErrors('postalCode')}"
                 th:text="${#fields.errors('postalCode')[0]}"></span>
+
+            <label th:for="courseCode">Course code: </label>
+            <input id="courseCode" type="text" th:field="*{courseCode}">
+            <span class="errors" th:if="${#fields.hasErrors('courseCode')}"
+                  th:text="${#fields.errors('courseCode')[0]}"></span>
         </div>
 
         <div th:each="language : *{programmingLanguages}">
